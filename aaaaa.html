@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Kursor Berlari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #game {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #target {
+            width: 100px;
+            height: 100px;
+            background-color: #007BFF;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            font-size: 24px;
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #target:hover {
+            background-color: #0056b3;
+        }
+
+        #info {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #message {
+            margin-top: 10px;
+            color: red;
+        }
+
+        #startButton, #resetButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            background-color: #28a745;
+        }
+
+        #startButton:hover {
+            background-color: #218838;
+        }
+
+        #resetButton {
+            background-color: #dc3545;
+        }
+
+        #resetButton:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Game Kursor Berlari</h1>
+    <div id="game">
+        <div id="target">Klik!</div>
+        <div id="info">
+            <div id="score">Skor: 0</div>
+            <div id="timer">Waktu: 00:00</div>
+            <div id="message"></div>
+        </div>
+        <button id="startButton">Mulai</button>
+        <button id="resetButton" style="display: none;">Reset</button>
+    </div>
+    <script>
+        const target = document.getElementById('target');
+        const scoreElement = document.getElementById('score');
+        const timerElement = document.getElementById('timer');
+        const messageElement = document.getElementById('message');
+        const startButton = document.getElementById('startButton');
+        const resetButton = document.getElementById('resetButton');
+
+        let score = 0;
+        let timer;
+        let seconds = 0;
+        let gameRunning = false;
+
+        function startGame() {
+            score = 0;
+            seconds = 0;
+            gameRunning = true;
+            scoreElement.textContent = `Skor: ${score}`;
+            timerElement.textContent = `Waktu: ${seconds.toString().padStart(2, '0')}:00`;
+            messageElement.textContent = '';
+            target.style.display = 'flex';
+            startButton.style.display = 'none';
+            resetButton.style.display = 'inline';
+
+            timer = setInterval(() => {
+                seconds++;
+                if (seconds >= 60) {
+                    clearInterval(timer);
+                    endGame();
+                }
+                timerElement.textContent = `Waktu: ${Math.floor(seconds / 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}`;
+            }, 1000);
+
+            moveTarget();
+        }
+
+        function endGame() {
+            gameRunning = false;
+            target.style.display = 'none';
+            messageElement.textContent = `Waktu habis! Skor akhir Anda adalah ${score}.`;
+            startButton.style.display = 'inline';
+            resetButton.style.display = 'none';
+        }
+
+        function moveTarget() {
+            if (!gameRunning) return;
+            const gameArea = document.getElementById('game');
+            const gameAreaRect = gameArea.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+
+            const maxX = gameAreaRect.width - targetRect.width;
+            const maxY = gameAreaRect.height - targetRect.height;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            target.style.left = `${randomX}px`;
+            target.style.top = `${randomY}px`;
+
+            setTimeout(moveTarget, 500);
+        }
+
+        function handleClick() {
+            if (!gameRunning) return;
+            score++;
+            scoreElement.textContent = `Skor: ${score}`;
+        }
+
+        function resetGame() {
+            clearInterval(timer);
+            target.style.display = 'none';
+            startGame();
+        }
+
+        target.addEventListener('click', handleClick);
+        startButton.addEventListener('click', startGame);
+        resetButton.addEventListener('click', resetGame);
+    </script>
+</body>
+</html>
