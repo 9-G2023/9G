@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -50,7 +49,7 @@
             color: #ffddc1;
         }
         .hero {
-            background: rgba(0, 0, 0, 0.5) url('https://via.placeholder.com/1600x600?text=Kelas+9-G') no-repeat center center/cover;
+            background: rgba(0, 0, 0, 0.5)
             color: #fff;
             text-align: center;
             padding: 100px 20px;
@@ -238,14 +237,14 @@
         <section id="about">
             <h2>Tentang Kelas 9-G</h2>
             <p>Kelas 9-G adalah bagian dari program pendidikan kami yang bertujuan untuk memberikan pengalaman belajar yang mendalam dan menyenangkan. Kami memiliki berbagai aktivitas dan materi pembelajaran yang dirancang untuk membantu siswa mencapai potensi maksimal mereka.</p>
-            <img src="image/WhatsApp Image 2024-08-25 at 15.07.42_8962beef.jpg" alt="Tentang Kelas 9-G">
+            <img src="image/newwww.webp" alt="Tentang Kelas 9-G">
         </section>
         <section id="gallery">
             <h2>Galeri Kelas</h2>
             <div class="carousel-container">
                 <div class="carousel-images">
-                    <img src="image/baru.jpg" alt="Galeri 1">
-                    <img src="image/Selamat hari guru ibu Yeti. Kami ingin mengucapkan terimakasih yang sebesar-besarnya untuk ibu yang sudah menjadi wali kelas kami. Terimakasih sudah mau mendidik dan membimbing kami menjadi lebih baik. Semoga ibu s.webp" alt="Galeri 2">
+                    <img src="image/448207003_7643637229052243_5760121963997977542_n.webp" alt="Galeri 1">
+                    <img src="image/aja.webp" alt="Galeri 2">
                     <img src="image/366146358_255700773987015_2705461868856523935_n.webp" alt="Galeri 3">
                     <img src="image/IMG-20240825-WA0018.jpg" alt="Galeri 4">
                     <img src="image/IMG-20240825-WA0019.jpg" alt="Galeri 5">
@@ -262,7 +261,7 @@
         <section id="teachers">
             <h2>Wali Kelas</h2>
             <div class="teacher">
-                <img src="image/WhatsApp Image 2024-08-25 at 13.48.31_18186d28.jpg" alt="Foto Guru">
+                <img src="image/WhatsApp Image 2024-08-25 at 13.48.31_9c8c049b.jpg" alt="Foto Guru">
                 <div class="teacher-info">
                     <h3>Hj.Yeti Irawatie, S.Pd</h3>
                     <p>Wali Kelas</p>
@@ -327,7 +326,7 @@
                 </div>
                 <div class="student-card">
                     <img src="image/farid.jpg" alt="Siswa 1">
-                    <p>Farid Bahar M</p>
+                    <a href="https://9-g2023.github.io/Profil-Farid-Bahar-M/" target="_blank"><p>Farid Bahar M</p></a>
                 </div>
                 <div class="student-card">
                     <img src="image/eci.jpg" alt="Siswa 1">
@@ -449,7 +448,7 @@
             showImage(currentIndex + 1);
         });
 
-        // Optional: auto-slide every 3 seconds
+        // Optional: auto-slide every 5 seconds
         setInterval(() => {
             showImage(currentIndex + 1);
         }, 3000);
